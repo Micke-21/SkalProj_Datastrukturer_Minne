@@ -2,6 +2,11 @@
 
 namespace SkalProj_Datastrukturer_Minne
 {
+    //TODO
+    //HACK
+    //UNDONE
+    //UnresolvedMergeConflict dd
+
     class Program
     {
         /// <summary>
@@ -59,6 +64,7 @@ namespace SkalProj_Datastrukturer_Minne
 
         /// <summary>
         /// Examines the datastructure List
+        /// <ToDO></ToDO>
         /// </summary>
         static void ExamineList()
         {
@@ -72,12 +78,40 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            List<string> theList = new List<string>();
+            string input = Console.ReadLine();
+            Console.WriteLine("List Capacity: {0}", theList.Capacity);
+            while (input != "")
+            {
+                char nav = input[0]; // ?? 'x';
 
-            //switch(nav){...}
+                string value = input.Substring(1); //input.getvalueordefault()
+                switch (nav)
+                {
+                    case '+':
+                        theList.Add(value);
+                        break;
+                    case '-':
+                        theList.Remove(value);
+                        break;
+                    default:
+                        Console.WriteLine("Input have to strat whit + or -");
+                        break;
+
+                }
+                Console.WriteLine($"Elements in list {theList.Count}, List Capacity: {theList.Capacity} ");
+                input = Console.ReadLine();
+            }
+            //ToDo 1.2 När övar listans kapacitet? När den blir full och nästa element skall läggas till.
+            //ToDo 1.3 Med hu mycket ökar kapacitetien? 4 första gången, sen 8, 16, 32 resp 64. Så den verkar fördubblas! Är inte det dumt när den blir stor? 
+            //ToDo 1.4 Varför ökar inte kapacitet i samma takt som element läggs till?
+            //      Antar att det har något med att det tar resurser att utöka det så då blir det väl effektivare att göra det i block!
+            //ToDo 1.5 Minskal Kapaciteten när element tas bort ur listan? Nej
+            //ToDo 1.6 När är det då fördelaktigt att använda en egendefinierad array istälet för en lista?
+            //      Använd en Array när jag vet på förhand hur många element man behöver...
+
+
+            //HACK theList.TrimExcess(), theList.Clear()
         }
 
         /// <summary>
@@ -90,6 +124,43 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+
+            var q = new Queue<string>();
+
+            q.Enqueue("Kalle");
+            Console.WriteLine("Kalle ställde sig i kön, {0} i kö.", q.Count);
+            q.Enqueue("Greta");
+            Console.WriteLine("Greta ställde sig i kön, {0} i kö.", q.Count);
+
+            Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
+
+            q.Enqueue("Stina");
+            Console.WriteLine("Stina ställde sig i kön, {0} i kö.", q.Count);
+
+            Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
+
+            q.Enqueue("Olle");
+            Console.WriteLine("Olle ställde sig i kön, {0} i kö.", q.Count);
+
+
+            Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
+
+            Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
+
+            q.Enqueue("David");
+            Console.WriteLine("David ställde sig i kön, {0} i kö.", q.Count);
+            q.Enqueue("Demitris");
+            Console.WriteLine("Demitris ställde sig i kön, {0} i kö.", q.Count);
+            q.Enqueue("Pelle");
+            Console.WriteLine("Pelle ställde sig i kön, {0} i kö.", q.Count);
+            q.Enqueue("Långben");
+            Console.WriteLine("Långben ställde sig i kön, {0} i kö.", q.Count);
+
+            Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
+
+            Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
+            Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
+            Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
         }
 
         /// <summary>
@@ -102,6 +173,9 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+
+
         }
 
         static void CheckParanthesis()
