@@ -161,7 +161,9 @@ namespace SkalProj_Datastrukturer_Minne
             Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
             Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
             Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
+
         }
+
 
         /// <summary>
         /// Examines the datastructure Stack
@@ -173,8 +175,31 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            //ToDo 3.1 Varför är det inte så smart att använda en stack i det här fallet? Den som ställde sig först i kön får aldrig betala och gå hem och ha fredagsmys!
 
+            var myStack = new Stack<string>();
 
+            do
+            {
+                Console.WriteLine("Skriv in en text.");
+                var input = Console.ReadLine();
+
+                if (input == "")
+                    break;
+
+                foreach (var t in input)
+                {
+                    myStack.Push(t.ToString());
+                }
+
+                var count = myStack.Count;
+                for (int i= 0; i < count; i++)
+                {
+                    Console.Write(myStack.Pop());
+                }
+
+                Console.WriteLine();
+            } while (true);
 
         }
 
