@@ -111,7 +111,7 @@ namespace SkalProj_Datastrukturer_Minne
             //      Använd en Array när jag vet på förhand hur många element man behöver...
 
 
-            //HACK theList.TrimExcess(), theList.Clear()
+            //HACK theList.TrimExcess(), theList.Clear() bra att hafunktioner till en lista :-)
         }
 
         /// <summary>
@@ -187,16 +187,12 @@ namespace SkalProj_Datastrukturer_Minne
                 if (input == "")
                     break;
 
-                foreach (var t in input)
+                foreach (char item in input!)
                 {
-                    myStack.Push(t.ToString());
+                    myStack.Push(item.ToString());
                 }
 
-                var count = myStack.Count;
-                for (int i= 0; i < count; i++)
-                {
-                    Console.Write(myStack.Pop());
-                }
+                while (myStack.Count > 0) { Console.Write(myStack.Pop()); }
 
                 Console.WriteLine();
             } while (true);
@@ -210,7 +206,75 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
+            //Todo 4.1 Vilken datastruktura använder jag: En Stack.
 
+
+            char[]? leftParenthesis = new char[] { '(', '{', '[', '<' };
+            char[]? rightParenthesis = new char[] { ')', '}', ']', '>' };
+            Stack<char>? myStack = new();
+
+            Console.WriteLine("Enter a string to investigate:");
+            string input = Console.ReadLine();// .Trim();
+            char corrispondingParanthesis = ' ';
+            bool wellFormatted = true;
+            string output = "";
+
+            foreach (char item in input)
+            {
+                if (leftParenthesis.Contains(item))
+                {
+                    //push
+                    myStack.Push((char)item);
+                    //Console.WriteLine($"Number of left paranthesis on the stack {myStack.Count}.");
+                }
+                else if (rightParenthesis.Contains(item))
+                {
+                    //Check and pop
+                    if (myStack.Count > 0)
+                    {
+                        switch (myStack.Pop())
+                        {
+                            case '(':
+                                corrispondingParanthesis = ')';
+                                break;
+                            case '[':
+                                corrispondingParanthesis = ']';
+                                break;
+                            case '{':
+                                corrispondingParanthesis = '}';
+                                break;
+                            case '<':
+                                corrispondingParanthesis = '>';
+                                break;
+                            default:
+                                break;
+                        }
+
+                        if (corrispondingParanthesis != item)
+                        {
+                            wellFormatted = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        wellFormatted = false;
+                        break;
+                    }
+                }
+                output += item;
+            }
+
+            // check if same amount of 
+            if (myStack.Count > 0)
+                wellFormatted = false;
+
+            if (wellFormatted)
+                Console.WriteLine("\nThe string is well formated.\n");
+            else
+                Console.WriteLine("\nThe string is badly formated.\n");
+
+            Console.WriteLine($"{output}\n");
         }
 
     }
