@@ -23,6 +23,9 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
+                    + "\n5. RecursiveEven"
+                    + "\n6. Fibonacci "
+                    + "\n7. Fibonacci series"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -51,7 +54,17 @@ namespace SkalProj_Datastrukturer_Minne
                     /*
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
+                     * 
                      */
+                    case '5':
+                        CheckRecusion();
+                        break;
+                    case '6':
+                        FibonacciCalc();
+                        break;
+                    case '7':
+                        FibonacciSeries();
+                        break;
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -60,6 +73,56 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             }
+        }
+
+        private static void FibonacciSeries()
+        {
+            var startTime = DateTime.Now;
+            var endTime = DateTime.Now - startTime;
+            int f;
+            Console.WriteLine("Enter number of how long fibonacci series. ");
+            int no = int.Parse(Console.ReadLine());
+            if (no < 0 || no > 46)
+                Console.WriteLine("N must be > 0 and < 47");
+            else
+            {
+                for (int n = 0; n <= no; n++)
+                {
+                    startTime = DateTime.Now;
+                    f = Fibonacci(n);
+                    endTime = DateTime.Now - startTime;
+
+                    //Console.WriteLine($"F({n:D3}) = {f:D10} at time {endTime}");
+                    Console.WriteLine($"F({n:02D5}) = {f:D10} at time {endTime}");
+                }
+            }
+        }
+
+        private static void FibonacciCalc()
+        {
+            Console.WriteLine("Enter number to fibonacci ");
+            int n = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"F({n}) = {Fibonacci(n)} ");
+        }
+
+        private static int Fibonacci(int n)
+        {
+            if (n == 0)
+                return 0;
+            else if (n == 1)
+                return 1;
+            else
+                return Fibonacci(n - 1) + Fibonacci(n - 2);
+
+        }
+
+        private static void CheckRecusion()
+        {
+            Console.WriteLine("Enter number to calculate n even");
+            int n = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"{RecursiveEven(n)}");
         }
 
         /// <summary>
@@ -277,6 +340,16 @@ namespace SkalProj_Datastrukturer_Minne
             Console.WriteLine($"{output}\n");
         }
 
+
+
+        static int RecursiveEven(int n)
+        {
+            if (n == 0)
+            {
+                return 0;
+            }
+            return RecursiveEven(n - 1) + 2;
+        }
     }
 }
 
