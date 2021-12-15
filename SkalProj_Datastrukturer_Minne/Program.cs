@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace SkalProj_Datastrukturer_Minne
+﻿namespace SkalProj_Datastrukturer_Minne
 {
-    //TODO
-    //HACK
-    //UNDONE
-    //UnresolvedMergeConflict dd
+    //UnresolvedMergeConflict   Test vilka
+    //UNDONE                    Todo taggar
+    //HACK                      som 
+    //TODO                      finns!
 
     class Program
     {
@@ -26,6 +24,8 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n5. RecursiveEven"
                     + "\n6. Fibonacci "
                     + "\n7. Fibonacci series"
+                    + "\n8. Iterative even"
+                    + "\n9. Iterative Fibonacci"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -65,6 +65,12 @@ namespace SkalProj_Datastrukturer_Minne
                     case '7':
                         FibonacciSeries();
                         break;
+                    case '8':
+                        CheckIterativeEven();
+                        break;
+                    case '9':
+                        ItertiveFibonacciSeries();
+                        break;
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -75,57 +81,9 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
-        private static void FibonacciSeries()
-        {
-            var startTime = DateTime.Now;
-            var endTime = DateTime.Now - startTime;
-            int f;
-            Console.WriteLine("Enter number of how long fibonacci series. ");
-            int no = int.Parse(Console.ReadLine());
-            if (no < 0 || no > 46)
-                Console.WriteLine("N must be > 0 and < 47");
-            else
-            {
-                for (int n = 0; n <= no; n++)
-                {
-                    startTime = DateTime.Now;
-                    f = Fibonacci(n);
-                    endTime = DateTime.Now - startTime;
-
-                    //Console.WriteLine($"F({n:D3}) = {f:D10} at time {endTime}");
-                    Console.WriteLine($"F({n:02D5}) = {f:D10} at time {endTime}");
-                }
-            }
-        }
-
-        private static void FibonacciCalc()
-        {
-            Console.WriteLine("Enter number to fibonacci ");
-            int n = int.Parse(Console.ReadLine());
-
-            Console.WriteLine($"F({n}) = {Fibonacci(n)} ");
-        }
-
-        private static int Fibonacci(int n)
-        {
-            if (n == 0)
-                return 0;
-            else if (n == 1)
-                return 1;
-            else
-                return Fibonacci(n - 1) + Fibonacci(n - 2);
-
-        }
-
-        private static void CheckRecusion()
-        {
-            Console.WriteLine("Enter number to calculate n even");
-            int n = int.Parse(Console.ReadLine());
-
-            Console.WriteLine($"{RecursiveEven(n)}");
-        }
 
         /// <summary>
+        /// Övning 1
         /// Examines the datastructure List
         /// <ToDO></ToDO>
         /// </summary>
@@ -142,6 +100,7 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             List<string> theList = new List<string>();
+            Console.WriteLine($"Enter word to add + or remove -");
             string input = Console.ReadLine();
             Console.WriteLine("List Capacity: {0}", theList.Capacity);
             while (input != "")
@@ -177,7 +136,9 @@ namespace SkalProj_Datastrukturer_Minne
             //HACK theList.TrimExcess(), theList.Clear() bra att hafunktioner till en lista :-)
         }
 
+
         /// <summary>
+        /// Övning 2
         /// Examines the datastructure Queue
         /// </summary>
         static void ExamineQueue()
@@ -225,10 +186,12 @@ namespace SkalProj_Datastrukturer_Minne
             Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
             Console.WriteLine($"{q.Dequeue()} lämnar kassan, nu {q.Count} i kö.");
 
+            Console.WriteLine();
         }
 
 
         /// <summary>
+        /// Övning 3
         /// Examines the datastructure Stack
         /// </summary>
         static void ExamineStack()
@@ -262,6 +225,11 @@ namespace SkalProj_Datastrukturer_Minne
 
         }
 
+
+        /// <summary>
+        /// Övning 4
+        /// Checks Parenthesis in an entered string
+        /// </summary>
         static void CheckParanthesis()
         {
             /*
@@ -319,7 +287,7 @@ namespace SkalProj_Datastrukturer_Minne
                             break;
                         }
                     }
-                    else
+                    else // no left paranthesis left => more right paranthesis than left
                     {
                         wellFormatted = false;
                         break;
@@ -328,7 +296,7 @@ namespace SkalProj_Datastrukturer_Minne
                 output += item;
             }
 
-            // check if same amount of 
+            // check if same amount of paranthesis > 0 => more left than right 
             if (myStack.Count > 0)
                 wellFormatted = false;
 
@@ -341,7 +309,25 @@ namespace SkalProj_Datastrukturer_Minne
         }
 
 
+        /// <summary>
+        /// Övning 5.2.1
+        /// Used for user input to call the RecursiveEven
+        /// </summary>
+        private static void CheckRecusion()
+        {
+            Console.WriteLine("Enter number to calculate n even");
+            int n = int.Parse(Console.ReadLine());
 
+            Console.WriteLine($"{RecursiveEven(n)}");
+        }
+
+
+        /// <summary>
+        /// Övning 5.2.2
+        /// Caculates the n Even number by recursion
+        /// </summary>
+        /// <param name="n">N the number to calculate</param>
+        /// <returns>Returns the n even number</returns>
         static int RecursiveEven(int n)
         {
             if (n == 0)
@@ -350,6 +336,176 @@ namespace SkalProj_Datastrukturer_Minne
             }
             return RecursiveEven(n - 1) + 2;
         }
+
+
+        /// <summary>
+        /// Övning 5.3.1
+        /// Startpoint of the Calculation of the Fibonacci number
+        /// </summary>
+        private static void FibonacciCalc()
+        {
+            Console.WriteLine("Enter number to fibonacci ");
+            int n = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"F({n}) = {Fibonacci(n)} ");
+        }
+
+
+        /// <summary>
+        /// Övning 5.3
+        /// Calculates the Fibonacci number by Recursion
+        /// </summary>
+        /// <param name="n">N the number to calculate</param>
+        /// <returns>Returna the Fibonaccinumber</returns>
+        private static int Fibonacci(int n)
+        {
+            if (n == 0)
+                return 0;
+            else if (n == 1)
+                return 1;
+            else
+                return Fibonacci(n - 1) + Fibonacci(n - 2);
+
+        }
+
+
+        /// <summary>
+        /// Övning 5.3.4 Extra
+        /// Calcualtes a series of Fibonacci number by using recursion
+        /// Enter a number and it loops and calculate the fibonacci series 
+        /// </summary>
+        private static void FibonacciSeries()
+        {
+            var startTime = DateTime.Now;
+            var endTime = DateTime.Now - startTime;
+            int f;
+            Console.WriteLine("Enter number of how long fibonacci series. ");
+            int no = int.Parse(Console.ReadLine());
+            if (no < 0 || no > 46)
+                Console.WriteLine("N must be > 0 and < 47");
+            else
+            {
+                for (int n = 0; n <= no; n++)
+                {
+                    startTime = DateTime.Now;
+                    f = Fibonacci(n);
+                    endTime = DateTime.Now - startTime;
+
+                    //Console.WriteLine($"F({n:D3}) = {f:D10} at time {endTime}");
+                    Console.WriteLine($"F({n:D}) = {f:D} at time {endTime}");
+                }
+                Console.WriteLine();
+            }
+        }
+
+
+        /// <summary>
+        /// Övning 6.2.1
+        /// Methode for get the input and call the Calculate n Even
+        /// </summary>
+        private static void CheckIterativeEven()
+        {
+            Console.WriteLine("Enter number to calculate even ");
+            int n = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"The even value for n {n} är {IterativeEven(n)}");
+
+        }
+
+
+        /// <summary>
+        /// Övning 6.2.2
+        /// Calculates the n Even number
+        /// </summary>
+        /// <param name="n">N the number to iterate</param>
+        /// <returns>Returns the n even number</returns>
+        private static int IterativeEven(int n)
+        {
+            if (n == 0) return 0;
+
+            int result = 0;
+
+            for (int i = 1; i <= n; i++)
+            {
+                result += 2;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Övning 6.3.1
+        /// Testing of the interactive FibonacciSeries
+        /// </summary>
+        private static void ItertiveFibonacciSeries()
+        {
+            Console.WriteLine("Enter number to fibonacci ");
+            int n = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"F({n}) = {IterativeFibonacci(n)} \n");
+
+
+            //Testing 
+            //for (int n = 0; n <= 100; n++)
+            //    Console.WriteLine($"F({n}) = {IterativeFibonacci(n)} ");
+
+            //TODO värdet kan bli större än vad en int kan hantera och då blir det negativt! Går det att kolla? Ja använd checked()
+
+        }
+        /*
+         * 
+         * ToDO 6 Fråga: Utgå ifrån era nyvunna kunskaper om iteration, rekursion och minneshantering. Vilken av
+         * ovanstående funktioner är mest minnesvänlig och varför?
+         * I iterationsvarianten används variabler som loopas och gör beräkningar..
+         * I Rekursionsvarianden skapas ett nytt metodanrop ("object") för varje iteration i bräkningen så därför är denna metod mer minneskrävande. 
+         * 
+         * 
+        */
+
+
+        /// <summary>
+        /// Övning 6.3.2
+        /// Calculates the n fibonacci number by iteration
+        /// </summary>
+        /// <param name="n">N the number to calculate</param>
+        /// <returns>Returns the n fibonacci number</returns>
+        private static ulong IterativeFibonacci(int n)
+        {
+            ulong result = 0;
+            ulong fn = 1, f1 = 0, f2 = 1;
+
+            if (n == 0)
+                result = 0;
+            else if (n == 1)
+                result = 1;
+            else
+            {
+                for (int i = 2; i <= n; i++)
+                {
+                    try
+                    {
+
+                        fn = checked(f1 + f2);
+                        f1 = f2;
+                        f2 = fn;
+                    }
+                    catch (OverflowException oe)
+                    {
+                        Console.WriteLine($"The number is to big!! {oe.Message}");
+                        break;
+                    }
+                }
+                result = fn;
+
+            }
+
+            //Hämtat hjälp från nätet
+            //https://www.c-sharpcorner.com/UploadFile/19b1bd/calculate-fibonacci-series-in-various-ways-using-C-Sharp/
+            //
+
+            return result;
+        }
+
     }
 }
 
