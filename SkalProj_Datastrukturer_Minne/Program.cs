@@ -1,9 +1,9 @@
 ﻿namespace SkalProj_Datastrukturer_Minne
 {
-    //UnresolvedMergeConflict   Test vilka
-    //UNDONE                    Todo taggar
-    //HACK                      som 
-    //TODO                      finns!
+    //UnresolvedMergeConflict   Testar vilka
+    //UNDONE                    "Todo" taggar
+    //HACK                      som finns!
+    //TODO                      Verkar som det går att skapa egna taggar i betalvarianterna av VS.
 
     class Program
     {
@@ -13,7 +13,6 @@
         /// <param name="args"></param>
         static void Main()
         {
-
             while (true)
             {
                 Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
@@ -21,13 +20,15 @@
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
+
                     + "\n5. RecursiveEven"
-                    + "\n6. Fibonacci "
-                    + "\n7. Fibonacci series"
+                    + "\n6. Recursive Fibonacci "
+                    + "\n7.   Recursive Fibonacci series"
                     + "\n8. Iterative even"
                     + "\n9. Iterative Fibonacci"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
+
                 try
                 {
                     input = Console.ReadLine()![0]; //Tries to set input to the first char in an input line
@@ -37,6 +38,7 @@
                     Console.Clear();
                     Console.WriteLine("Please enter some input!");
                 }
+
                 switch (input)
                 {
                     case '1':
@@ -365,7 +367,6 @@
                 return 1;
             else
                 return Fibonacci(n - 1) + Fibonacci(n - 2);
-
         }
 
 
@@ -409,7 +410,6 @@
             int n = int.Parse(Console.ReadLine());
 
             Console.WriteLine($"The even value for n {n} är {IterativeEven(n)}");
-
         }
 
 
@@ -471,8 +471,8 @@
         /// <returns>Returns the n fibonacci number</returns>
         private static ulong IterativeFibonacci(int n)
         {
-            ulong result = 0;
             ulong fn = 1, f1 = 0, f2 = 1;
+            ulong result;
 
             if (n == 0)
                 result = 0;
@@ -484,26 +484,24 @@
                 {
                     try
                     {
-
                         fn = checked(f1 + f2);
                         f1 = f2;
                         f2 = fn;
                     }
                     catch (OverflowException oe)
                     {
-                        Console.WriteLine($"The number is to big!! {oe.Message}");
+                        Console.WriteLine($"The number ({n}) give to big result!! {oe.Message}");
                         break;
                     }
                 }
                 result = fn;
-
             }
+
+            return result;
 
             //Hämtat hjälp från nätet
             //https://www.c-sharpcorner.com/UploadFile/19b1bd/calculate-fibonacci-series-in-various-ways-using-C-Sharp/
             //
-
-            return result;
         }
 
     }
