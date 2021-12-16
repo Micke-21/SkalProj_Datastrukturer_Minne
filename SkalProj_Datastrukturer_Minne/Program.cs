@@ -62,16 +62,16 @@
                         CheckRecusion();
                         break;
                     case '6':
-                        FibonacciCalc();
+                        RecursiveFibonacciCalc();
                         break;
                     case '7':
-                        FibonacciSeries();
+                        RecursiveFibonacciSeries();
                         break;
                     case '8':
                         CheckIterativeEven();
                         break;
                     case '9':
-                        ItertiveFibonacciSeries();
+                        IterativeFibonacciSeries();
                         break;
                     case '0':
                         Environment.Exit(0);
@@ -102,14 +102,16 @@
             */
 
             List<string> theList = new List<string>();
-            Console.WriteLine($"Enter word to add + or remove -");
-            string input = Console.ReadLine();
-            Console.WriteLine("List Capacity: {0}", theList.Capacity);
+            Console.WriteLine("List created. Capacity: {0}", theList.Capacity);
+            Console.WriteLine($"Enter word start with + to add, - to remove. empty line to exit. ");
+            string? input = Console.ReadLine();
+            ArgumentNullException.ThrowIfNull(nameof(input));
+
             while (input != "")
             {
-                char nav = input[0]; // ?? 'x';
+                char nav = input[0];
 
-                string value = input.Substring(1); //input.getvalueordefault()
+                string value = input.Substring(1);
                 switch (nav)
                 {
                     case '+':
@@ -121,21 +123,20 @@
                     default:
                         Console.WriteLine("Input have to strat whit + or -");
                         break;
-
                 }
                 Console.WriteLine($"Elements in list {theList.Count}, List Capacity: {theList.Capacity} ");
                 input = Console.ReadLine();
             }
-            //ToDo 1.2 När övar listans kapacitet? När den blir full och nästa element skall läggas till.
-            //ToDo 1.3 Med hu mycket ökar kapacitetien? 4 första gången, sen 8, 16, 32 resp 64. Så den verkar fördubblas! Är inte det dumt när den blir stor? 
+            //ToDo 1.2 När ökar listans kapacitet? När den blir full och nästa element skall läggas till.
+            //ToDo 1.3 Med hur mycket ökar kapacitetien? 4 första gången, sen 8, 16, 32 resp 64. Så den verkar fördubblas! Är inte det dumt när den blir stor? 
             //ToDo 1.4 Varför ökar inte kapacitet i samma takt som element läggs till?
             //      Antar att det har något med att det tar resurser att utöka det så då blir det väl effektivare att göra det i block!
-            //ToDo 1.5 Minskal Kapaciteten när element tas bort ur listan? Nej
+            //ToDo 1.5 Minskar Kapaciteten när element tas bort ur listan? Nej
             //ToDo 1.6 När är det då fördelaktigt att använda en egendefinierad array istälet för en lista?
             //      Använd en Array när jag vet på förhand hur många element man behöver...
 
 
-            //HACK theList.TrimExcess(), theList.Clear() bra att hafunktioner till en lista :-)
+            //HACK theList.TrimExcess(), theList.Clear() bra att ha funktioner till en lista :-)
         }
 
 
@@ -229,7 +230,7 @@
 
 
         /// <summary>
-        /// Övning 4
+        /// Övning 4.2
         /// Checks Parenthesis in an entered string
         /// </summary>
         static void CheckParanthesis()
@@ -247,7 +248,7 @@
             Stack<char>? myStack = new();
 
             Console.WriteLine("Enter a string to investigate:");
-            string input = Console.ReadLine();// .Trim();
+            string? input = Console.ReadLine().Trim();
             char corrispondingParanthesis = ' ';
             bool wellFormatted = true;
             string output = "";
@@ -342,40 +343,40 @@
 
         /// <summary>
         /// Övning 5.3.1
-        /// Startpoint of the Calculation of the Fibonacci number
+        /// Startpoint of the Calculation of the Fibonacci number using recursion
         /// </summary>
-        private static void FibonacciCalc()
+        private static void RecursiveFibonacciCalc()
         {
             Console.WriteLine("Enter number to fibonacci ");
             int n = int.Parse(Console.ReadLine());
 
-            Console.WriteLine($"F({n}) = {Fibonacci(n)} ");
+            Console.WriteLine($"F({n}) = {RecursiveFibonacci(n)} ");
         }
 
 
         /// <summary>
-        /// Övning 5.3
+        /// Övning 5.3.2
         /// Calculates the Fibonacci number by Recursion
         /// </summary>
         /// <param name="n">N the number to calculate</param>
         /// <returns>Returna the Fibonaccinumber</returns>
-        private static int Fibonacci(int n)
+        private static int RecursiveFibonacci(int n)
         {
             if (n == 0)
                 return 0;
             else if (n == 1)
                 return 1;
             else
-                return Fibonacci(n - 1) + Fibonacci(n - 2);
+                return RecursiveFibonacci(n - 1) + RecursiveFibonacci(n - 2);
         }
 
 
         /// <summary>
-        /// Övning 5.3.4 Extra
+        /// Övning 5.3.3 Extra
         /// Calcualtes a series of Fibonacci number by using recursion
         /// Enter a number and it loops and calculate the fibonacci series 
         /// </summary>
-        private static void FibonacciSeries()
+        private static void RecursiveFibonacciSeries()
         {
             var startTime = DateTime.Now;
             var endTime = DateTime.Now - startTime;
@@ -389,7 +390,7 @@
                 for (int n = 0; n <= no; n++)
                 {
                     startTime = DateTime.Now;
-                    f = Fibonacci(n);
+                    f = RecursiveFibonacci(n);
                     endTime = DateTime.Now - startTime;
 
                     //Console.WriteLine($"F({n:D3}) = {f:D10} at time {endTime}");
@@ -437,7 +438,7 @@
         /// Övning 6.3.1
         /// Testing of the interactive FibonacciSeries
         /// </summary>
-        private static void ItertiveFibonacciSeries()
+        private static void IterativeFibonacciSeries()
         {
             Console.WriteLine("Enter number to fibonacci ");
             int n = int.Parse(Console.ReadLine());
