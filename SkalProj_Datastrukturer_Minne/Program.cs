@@ -450,12 +450,12 @@
             //for (int n = 0; n <= 100; n++)
             //    Console.WriteLine($"F({n}) = {IterativeFibonacci(n)} ");
 
-            //TODO värdet kan bli större än vad en int kan hantera och då blir det negativt! Går det att kolla? Ja använd checked()
+            //ToDo värdet kan bli större än vad en int kan hantera och då blir det negativt! Går det att kolla? Ja använd checked()
 
         }
         /*
          * 
-         * ToDO 6 Fråga: Utgå ifrån era nyvunna kunskaper om iteration, rekursion och minneshantering. Vilken av
+         * ToDo 6 Fråga: Utgå ifrån era nyvunna kunskaper om iteration, rekursion och minneshantering. Vilken av
          * ovanstående funktioner är mest minnesvänlig och varför?
          * I iterationsvarianten används variabler som loopas och gör beräkningar..
          * I Rekursionsvarianden skapas ett nytt metodanrop ("object") för varje iteration i bräkningen så därför är denna metod mer minneskrävande. 
