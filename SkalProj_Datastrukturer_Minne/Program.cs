@@ -500,7 +500,7 @@
 
             return result;
 
-            //Hämtat hjälp från nätet
+            //Hämtat hjälp från nätet, för att förstå hur en fibnacci serie ser ut och fungerar...
             //https://www.c-sharpcorner.com/UploadFile/19b1bd/calculate-fibonacci-series-in-various-ways-using-C-Sharp/
             //
         }
